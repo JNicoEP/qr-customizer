@@ -28,13 +28,20 @@ const initialState: AppState = {
   },
   phoneData: '',
   qrOptions: {
-    width: 300,
+    width: 400,
     margin: 10,
+    errorCorrectionLevel: 'Q',
     dotType: 'square',
     dotColor: '#000000',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
+    transparentBackground: false,
     cornerSquareType: 'square',
     cornerDotType: 'square',
+    corners: {
+      customColors: false,
+      squareColor: '#000000',
+      dotColor: '#000000',
+    },
     gradient: {
       enabled: false,
       type: 'linear',
@@ -44,16 +51,25 @@ const initialState: AppState = {
     },
     logo: {
       src: '',
-      size: 0.4,
-      margin: 10,
+      presetId: undefined,
+      size: 0.35,
+      margin: 8,
       hideBackgroundDots: true,
+    },
+    frame: {
+      type: 'none',
+      text: '¡ESCANÉAME!',
+      bgColor: '#FF90E8',
+      textColor: '#000000',
     },
   },
 };
 
 export default function App() {
   const [state, setState] = useState<AppState>(initialState);
+  const [isMobilePreviewOpen, setIsMobilePreviewOpen] = useState(false);
   const qrCodeRef = useRef<QRCodeStyling | null>(null);
+  const previewMountRef = useRef<HTMLDivElement>(null);
 
   const qrData = useMemo(
     () =>
@@ -65,26 +81,38 @@ export default function App() {
         state.wifiData,
         state.vcardData
       ),
-    [state.contentType, state.contentData, state.emailData, state.phoneData, state.wifiData, state.vcardData]
+    [
+      state.contentType,
+      state.contentData,
+      state.emailData,
+      state.phoneData,
+      state.wifiData,
+      state.vcardData,
+    ]
   );
 
-  const setStep = (step: number) => setState((s) => ({ ...s, currentStep: step }));
+  const setStep = (step: number) => {
+    setState((s) => ({ ...s, currentStep: step }));
+    // Auto-scroll to top of controls on step change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div>
+    <div className="page-wrapper">
       <Header />
 
       {/* Hero */}
       <section className="hero">
-        <h1 className="hero__title">Crea tu QR personalizado</h1>
+        <div className="hero__tag">ESTILO BRUTALISTA • 100% GRATUITO</div>
+        <h1 className="hero__title">CREA TU QR PERSONALIZADO</h1>
         <p className="hero__subtitle">
-          Diseña códigos QR únicos con colores, formas y tu propio logo. Gratis y sin registro.
+          Cambia la forma de los puntos, añade tu logo, degradados, marcos llamativos y descarga en alta resolución sin registros.
         </p>
       </section>
 
       <div className="app-layout">
         {/* Left: Controls */}
-        <div className="controls-panel">
+        <main className="controls-panel">
           <StepSelector currentStep={state.currentStep} onStepChange={setStep} />
 
           {state.currentStep === 1 && (
@@ -123,14 +151,52 @@ export default function App() {
           )}
 
           {state.currentStep === 4 && (
-            <DownloadPanel qrCodeRef={qrCodeRef} onBack={() => setStep(3)} />
+            <DownloadPanel
+              qrCodeRef={qrCodeRef}
+              previewContainerRef={previewMountRef}
+              options={state.qrOptions}
+              onBack={() => setStep(3)}
+            />
           )}
-        </div>
+        </main>
 
-        {/* Right: Preview */}
-        <div className="preview-panel">
-          <QRPreview data={qrData} options={state.qrOptions} qrCodeRef={qrCodeRef} />
-        </div>
+        {/* Right: Live Preview Panel (Desktop Sticky & Mobile Drawer) */}
+        <aside
+          className={`preview-panel ${
+            isMobilePreviewOpen ? 'preview-panel--mobile-open' : ''
+          }`}
+          id="qr-preview-section"
+        >
+          {isMobilePreviewOpen && (
+            <div className="mobile-preview-header">
+              <span className="mobile-preview-title">Vista previa de tu QR</span>
+              <button
+                type="button"
+                className="mobile-preview-close-btn"
+                onClick={() => setIsMobilePreviewOpen(false)}
+              >
+                ✕ Cerrar
+              </button>
+            </div>
+          )}
+
+          <QRPreview
+            data={qrData}
+            options={state.qrOptions}
+            qrCodeRef={qrCodeRef}
+            containerRef={previewMountRef}
+          />
+        </aside>
+
+        {/* Botón flotante para móviles y tablets: Ver QR en vivo */}
+        <button
+          type="button"
+          className="mobile-floating-preview-trigger"
+          onClick={() => setIsMobilePreviewOpen(!isMobilePreviewOpen)}
+          aria-label="Alternar vista previa del código QR"
+        >
+          {isMobilePreviewOpen ? '✕ Ocultar QR' : '👁️ Ver QR en vivo'}
+        </button>
 
         <Footer />
       </div>
