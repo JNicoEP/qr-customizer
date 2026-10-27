@@ -7,6 +7,7 @@ import ContentForm from './components/ContentForm';
 import QRCustomizer from './components/QRCustomizer';
 import QRPreview from './components/QRPreview';
 import DownloadPanel from './components/DownloadPanel';
+import SeoFaq from './components/SeoFaq';
 import Footer from './components/Footer';
 import { getQRData } from './utils/qrHelpers';
 import type { AppState } from './types';
@@ -93,7 +94,6 @@ export default function App() {
 
   const setStep = (step: number) => {
     setState((s) => ({ ...s, currentStep: step }));
-    // Auto-scroll to top of controls on step change
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -101,15 +101,16 @@ export default function App() {
     <div className="page-wrapper">
       <Header />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="hero">
-        <div className="hero__tag">ESTILO BRUTALISTA • 100% GRATUITO</div>
+        <div className="hero__tag">DISEÑO NEO-BRUTALISTA • 100% GRATUITO</div>
         <h1 className="hero__title">CREA TU QR PERSONALIZADO</h1>
         <p className="hero__subtitle">
-          Cambia la forma de los puntos, añade tu logo, degradados, marcos llamativos y descarga en alta resolución sin registros.
+          Cambia la forma de los puntos, añade tu logo o redes, degradados únicos y marcos "Escanéame" de alto impacto. Descarga en PNG, SVG y JPEG sin registro.
         </p>
       </section>
 
+      {/* App Main Area */}
       <div className="app-layout">
         {/* Left: Controls */}
         <main className="controls-panel">
@@ -160,7 +161,7 @@ export default function App() {
           )}
         </main>
 
-        {/* Right: Live Preview Panel (Desktop Sticky & Mobile Drawer) */}
+        {/* Right: Sticky Live Preview Panel */}
         <aside
           className={`preview-panel ${
             isMobilePreviewOpen ? 'preview-panel--mobile-open' : ''
@@ -188,18 +189,22 @@ export default function App() {
           />
         </aside>
 
-        {/* Botón flotante para móviles y tablets: Ver QR en vivo */}
+        {/* Mobile Floating Button */}
         <button
           type="button"
           className="mobile-floating-preview-trigger"
           onClick={() => setIsMobilePreviewOpen(!isMobilePreviewOpen)}
-          aria-label="Alternar vista previa del código QR"
+          aria-label="Ver vista previa del código QR en vivo"
         >
           {isMobilePreviewOpen ? '✕ Ocultar QR' : '👁️ Ver QR en vivo'}
         </button>
-
-        <Footer />
       </div>
+
+      {/* SEO FAQ & Guide Section */}
+      <SeoFaq />
+
+      {/* Full-Width Redesigned Footer */}
+      <Footer />
     </div>
   );
 }

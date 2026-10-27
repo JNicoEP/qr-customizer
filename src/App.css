@@ -1,5 +1,5 @@
 /* ============================================
-   QR CUSTOMIZER — BRUTALIST DESIGN SYSTEM 2.0
+   QR CUSTOMIZER — BRUTALIST DESIGN SYSTEM 3.0
    Gumroad-inspired bold brutalist UI
    100% Mobile & Desktop Responsive
    ============================================ */
@@ -67,7 +67,7 @@ body {
 
 .header__logo {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -110,7 +110,7 @@ body {
 .hero {
   background: var(--lavender);
   border-bottom: var(--border-width) solid var(--black);
-  padding: 40px 24px;
+  padding: 44px 24px;
   text-align: center;
 }
 
@@ -118,7 +118,7 @@ body {
   display: inline-block;
   background: var(--yellow);
   color: var(--black);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   padding: 4px 12px;
   border: 2px solid var(--black);
@@ -138,7 +138,7 @@ body {
 
 .hero__subtitle {
   font-size: clamp(14px, 2vw, 17px);
-  max-width: 680px;
+  max-width: 700px;
   margin: 0 auto;
   color: var(--black);
   font-weight: 500;
@@ -172,10 +172,9 @@ body {
   align-items: center;
   justify-content: flex-start;
   background: var(--white);
-  border-left: none;
 }
 
-/* === STEP NAVIGATION (RESPONSIVE) === */
+/* === STEP NAVIGATION === */
 .step-nav-wrapper {
   margin-bottom: 24px;
 }
@@ -499,7 +498,7 @@ body {
   border: var(--border-width) solid var(--black);
   padding: 12px 14px;
   font-family: var(--font-main);
-  font-size: 16px; /* 16px prevents iOS auto-zoom */
+  font-size: 16px;
   background: var(--white);
   outline: none;
   transition: box-shadow 0.1s ease;
@@ -1203,15 +1202,286 @@ body {
   line-height: 1.7;
 }
 
-/* === FOOTER === */
-.footer {
+/* === SEO FAQ SECTION === */
+.seo-faq-section {
+  background: var(--white);
+  border-top: var(--border-width) solid var(--black);
+  padding: 56px 24px;
+}
+
+.seo-faq-header {
+  max-width: 840px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.seo-faq-tag {
+  display: inline-block;
+  background: var(--pink);
+  color: var(--black);
+  border: 2px solid var(--black);
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  box-shadow: 2px 2px 0px var(--black);
+}
+
+.seo-faq-title {
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.seo-faq-subtitle {
+  font-size: 15px;
+  color: var(--gray-dark);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.seo-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.seo-faq-card {
+  border: var(--border-width) solid var(--black);
+  background: var(--gray-light);
+  box-shadow: 4px 4px 0px var(--black);
+  padding: 22px 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.seo-faq-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--black);
+  background: #FFFDF0;
+}
+
+.seo-faq-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.seo-faq-card__tag {
+  border: 1.5px solid var(--black);
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--black);
+}
+
+.seo-faq-card__toggle {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.seo-faq-card__question {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.seo-faq-card__answer {
+  font-size: 13.5px;
+  color: #333333;
+  line-height: 1.6;
+}
+
+/* === REDESIGNED BRUTALIST FOOTER === */
+.footer-container {
   background: var(--black);
   color: var(--white);
-  padding: 24px 20px;
-  text-align: center;
   border-top: var(--border-width) solid var(--black);
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-ticker {
+  background: var(--yellow);
+  color: var(--black);
+  border-bottom: var(--border-width) solid var(--black);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.footer-ticker__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px;
+}
+
+.ticker-bullet {
+  color: var(--black);
+  font-size: 10px;
+}
+
+.footer-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 52px 24px 36px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1.2fr 1.6fr;
+  gap: 36px;
+}
+
+.footer-col--brand {
+  padding-right: 16px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.footer-logo__icon {
+  background: var(--pink);
+  color: var(--black);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  border: 2px solid var(--white);
+  box-shadow: 2px 2px 0px var(--yellow);
+}
+
+.footer-logo__title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.footer-description {
   font-size: 13px;
-  grid-column: 1 / -1;
+  color: var(--gray-mid);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.footer-badge {
+  background: #1C1C1C;
+  color: var(--yellow);
+  border: 1px solid #383838;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footer-col__title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--pink);
+  margin-bottom: 16px;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 6px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray-mid);
+}
+
+.footer-links li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-repo-text {
+  font-size: 13px;
+  color: var(--gray-mid);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.footer-github-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--pink);
+  color: var(--black);
+  border: 2px solid var(--white);
+  box-shadow: 4px 4px 0px var(--yellow);
+  padding: 12px 14px;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.1s ease;
+}
+
+.footer-github-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--yellow);
+  background: var(--yellow);
+}
+
+.footer-github-arrow {
+  font-size: 14px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #292929;
+  padding: 20px 24px;
+  font-size: 12px;
+}
+
+.footer-bottom__content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #AAAAAA;
+}
+
+.footer-bottom__privacy {
+  color: #777777;
 }
 
 /* === MOBILE FLOATING PREVIEW TRIGGER === */
@@ -1249,7 +1519,6 @@ body {
     padding: 20px 16px;
   }
 
-  /* El panel de vista previa se convierte en Drawer flotante o sección inferior */
   .preview-panel {
     position: relative;
     top: 0;
@@ -1324,6 +1593,11 @@ body {
     min-width: 80px;
     padding: 10px 12px;
   }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1358,6 +1632,33 @@ body {
 
   .nav-buttons {
     flex-direction: column;
+  }
+
+  .seo-faq-section {
+    padding: 36px 16px;
+  }
+
+  .seo-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-main {
+    padding: 36px 16px 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-col--brand {
+    padding-right: 0;
+  }
+
+  .footer-bottom__content {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
   }
 }
 
